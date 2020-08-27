@@ -1,11 +1,16 @@
 <?php   
-$Host='localhost';
-$Usuario='root';
-$Contraseña='root';
-$Basedatos='moduloprueba';
-$Conexion=mysqli_connect($Host,$Usuario,$Contraseña,$Basedatos);
-//mysqli_close($Conexion);
-if (!$Conexion) {
-    echo "Error de Conexion a la Base de Datos";
+class connection{
+    private $conn;
+
+    public function __construct(){
+        $this-> conn = new mysqli("localhost", "root", "root", "moduloprueba");
+        
+    }
+    public function get_connection(){
+        
+        return $this->conn;
+    }
+    
 }
+
 ?>
