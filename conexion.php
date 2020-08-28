@@ -3,8 +3,11 @@ class connection{
     private $conn;
 
     public function __construct(){
-        $this->conn = new mysqli("localhost", "root", "root", "moduloprueba");
-        
+        try {
+            $this->conn = new mysqli("localhost", "root", "root", "moduloprueba");
+        } catch (PDOException $e) {
+            die('Connection Failed: '.$e->getMessage());
+        }
     }
     public function get_connection(){
         
