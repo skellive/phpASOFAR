@@ -20,7 +20,7 @@ try {
     } else {
         echo('CAMPO VACIO');
     }
-} catch (mysqli_sql_exception $e) {
+} catch (Exception $e) {
     die('Failed: '.$e->getMessage());
 }
 

@@ -17,7 +17,7 @@ try {
 	echo json_encode($rows, JSON_PRETTY_PRINT, JSON_UNESCAPED_UNICODE);
 	$statement->close();
 	$conexion->close();
-} catch (mysqli_sql_exception $e) {
+} catch (Exception $e) {
     die('Failed: '.$e->getMessage());
 }
 
