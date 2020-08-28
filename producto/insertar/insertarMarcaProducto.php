@@ -1,6 +1,9 @@
 <?php
 //$_POST["marca"]="NOKIA";
-if (!empty($_POST["marca"])) {
+
+
+try {
+    if (!empty($_POST["marca"])) {
     $marca = $_POST["marca"];
     require_once('../../conexion.php');
     $mysql = new connection();
@@ -14,8 +17,11 @@ if (!empty($_POST["marca"])) {
     $statement->execute();
     $statement->close();
     $conexion->close();
-} else {
-    echo('CAMPO VACIO');
+    } else {
+        echo('CAMPO VACIO');
+    }
+} catch (mysqli_sql_exception $e) {
+    die('Failed: '.$e->getMessage());
 }
 
 ?>

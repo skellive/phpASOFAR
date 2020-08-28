@@ -1,6 +1,8 @@
 <?php
 //$_POST["tipo"]="GENERAL";
-if (!empty($_POST["tipo"])) {
+
+try {
+    if (!empty($_POST["tipo"])) {
     $tipo = $_POST["tipo"];
     require_once('../../conexion.php');
     $mysql = new connection();
@@ -14,8 +16,11 @@ if (!empty($_POST["tipo"])) {
     $statement->execute();
     $statement->close();
     $conexion->close();
-} else {
-    echo('CAMPO VACIO');
+    } else {
+        echo('CAMPO VACIO');
+    }
+} catch (mysqli_sql_exception $e) {
+    die('Failed: '.$e->getMessage());
 }
 
 ?>

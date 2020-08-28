@@ -1,6 +1,9 @@
 <?php
 //$_POST["medida"]="2G";
-if (!empty($_POST["medida"])) {
+
+
+try {
+   if (!empty($_POST["medida"])) {
     $medida = $_POST["medida"];
     require_once('../../conexion.php');
     $mysql = new connection();
@@ -14,8 +17,10 @@ if (!empty($_POST["medida"])) {
     $statement->execute();
     $statement->close();
     $conexion->close();
-} else {
-    echo('CAMPO VACIO');
+    } else {
+        echo('CAMPO VACIO');
+    } 
+} catch (mysqli_sql_exception $e) {
+    die('Failed: '.$e->getMessage());
 }
-
 ?>

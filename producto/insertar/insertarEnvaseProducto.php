@@ -1,6 +1,9 @@
 <?php
 //$_POST["envase"]="TUBO";
-if (!empty($_POST["envase"])) {
+
+
+try {
+    if (!empty($_POST["envase"])) {
     $envase = $_POST["envase"];
     require_once('../../conexion.php');
     $mysql = new connection();
@@ -14,8 +17,11 @@ if (!empty($_POST["envase"])) {
     $statement->execute();
     $statement->close();
     $conexion->close();
-} else {
-    echo('CAMPO VACIO');
+    } else {
+        echo('CAMPO VACIO');
+    }
+} catch (mysqli_sql_exception $e) {
+    die('Failed: '.$e->getMessage());
 }
 
 ?>

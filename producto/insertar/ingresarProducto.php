@@ -22,7 +22,9 @@ $_POST["Unidades"]="";
 
 
 //validar campos vacios
-if (
+
+try {
+    if (
     !empty($_POST["Codigo_barras"]) ||  
     !empty($_POST["Nombre"]) || 
     !empty($_POST["Descripcion"]) || 
@@ -115,8 +117,11 @@ if (
 
 
 
-} else {
-    echo('CAMPO VACIO');
+    } else {
+        echo('CAMPO VACIO');
+    }
+} catch (mysqli_sql_exception $e) {
+    die('Failed: '.$e->getMessage());
 }
 
 
