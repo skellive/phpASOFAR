@@ -3,7 +3,7 @@ require_once ('../../conexion.php');
 $mysql = new connection();
 $conexion = $mysql->get_connection();
 $envase='BOTELLA';
-//Consulata
+//Consulta
 //@valor1 esta demas pero es necesario
 $sql='CALL insertarEnvaseProducto(?,@valor1)'; 
 $statement = $conexion->prepare($sql);
