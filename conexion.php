@@ -5,7 +5,7 @@ class connection{
     public function __construct(){
         try {
             $this->conn = new mysqli("localhost", "root", "root", "moduloprueba");
-        } catch (PDOException $e) {
+        } catch (mysqli_sql_exception $e) {
             die('Connection Failed: '.$e->getMessage());
         }
     }
