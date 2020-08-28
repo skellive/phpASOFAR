@@ -6,7 +6,7 @@ $conexion = $mysql->get_connection();
 $sql="CALL insertarEnvaseProducto(?,?)";
 $statement = $conexion->prepare($sql);
 //  i=int s=string d=decimal
-$statement->bind_param("s","FRASCO");
+$statement->bind_param("s","GOTERO");
 $statement->bind_param("s","valor1");// ESTE ESTA POR LAS PURAS
 $statement->execute();
 $statement->close();
