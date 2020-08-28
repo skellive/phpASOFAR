@@ -7,11 +7,11 @@ $statement = $conexion->prepare("CALL listarProductosCompras(?)");
 $statement->bind_param("i",$datos["op"]);
 $statement->execute();
 $rows = array();
-	//while($r = mysqli_fetch_assoc($statement)){
-		//$rows[] = $r;
-	//}
+	while($r = mysqli_fetch_assoc($statement)){
+		$rows[] = $r;
+	}
 header('Content-Type: application/json; charset=utf8');
-echo json_encode($statement, JSON_PRETTY_PRINT, JSON_UNESCAPED_UNICODE);
+echo json_encode($rows, JSON_PRETTY_PRINT, JSON_UNESCAPED_UNICODE);
 $statement->close();
 $conexion->close();
 
