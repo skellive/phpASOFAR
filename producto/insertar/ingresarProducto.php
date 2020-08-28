@@ -1,18 +1,25 @@
 <?php
 
-//$_POST["Codigo_barras"]="";
-//$_POST["Nombre"]="";
-//$_POST["Descripcion"]="";
-//$_POST["Peso"]="";
-//$_POST["Id_tipo"]="";
-//$_POST["Id_medidas"]="";
-//$_POST["Id_envase"]="";
-//$_POST["Id_marcas"]="";
-//$_POST["Id_usuario"]="";
-//$_POST["Iva"]="";
-//$_POST["Cantidad_minima"]="";
-//$_POST["Receta"]="";
-//$_POST["Unidades"]="";
+/*
+//PRODUCTO
+$_POST["Codigo_barras"]="";
+$_POST["Nombre"]="";
+$_POST["Descripcion"]="";
+$_POST["Peso"]="";
+$_POST["Id_tipo"]="";
+$_POST["Id_medidas"]="";
+$_POST["Id_envase"]="";
+$_POST["Id_marcas"]="";
+$_POST["Id_usuario"]="";
+$_POST["Iva"]="";
+$_POST["Cantidad_minima"]="";
+$_POST["Receta"]="";
+$_POST["Unidades"]="";
+*/
+
+//PRECIO
+
+
 
 //validar campos vacios
 if (
@@ -52,6 +59,10 @@ if (
     require_once('../../conexion.php');
     $mysql = new connection();
     $conexion = $mysql->get_connection();
+
+
+
+    //GURADAR EN LA TABLA PRODUCTO
     //Consulta
     //@valor1 esta demas pero es necesario 
     $sql = 'CALL ingresarProducto(?,?,?,?,?,?,?,?,?,?,?,?,?,?,@valor1)';
@@ -66,7 +77,37 @@ if (
 
 
 
-    // falta la de ingresar precio aquí
+    //BUSCAR PRODUCTO INSERTADO
+    //Consulta
+    //@valor1 esta demas pero es necesario 
+    $sql = 'CALL BuscarIDProductoNuevo(?,?,?,?,?,?,?,?,?,?,?,?,?,?)';
+    $statement = $conexion->prepare($sql);
+    //  i=int s=string d=decimal
+    $statement->bind_param('ssss', $Codigo_barras,$Nombre,$Descripcion,$fecha);
+    $statement->bind_param('diii', $Peso,$Id_tipo,$Id_medidas,$Id_envase);
+    $statement->bind_param('iisi', $Id_marcas,$Id_usuario,$Iva,$Cantidad_minima);
+    $statement->bind_param('si', $Receta,$Unidades);
+    $statement->execute();
+    $statement->close();
+
+
+
+
+
+    //GURADAR EN LA TABLA PRECIO
+    //Consulta
+    //@valor1 esta demas pero es necesario 
+    $sql = 'CALL actualizarPrecioCompra(?,?,?,?,?,?,?,?,@valor1)';
+    $statement = $conexion->prepare($sql);
+    //  i=int s=string d=decimal
+    $statement->bind_param('ssss', $Codigo_barras,$Nombre,$Descripcion,$fecha);
+    $statement->bind_param('diii', $Peso,$Id_tipo,$Id_medidas,$Id_envase);
+    $statement->bind_param('iisi', $Id_marcas,$Id_usuario,$Iva,$Cantidad_minima);
+    $statement->bind_param('si', $Receta,$Unidades);
+    $statement->execute();
+    $statement->close();
+
+
 
 
     $conexion->close();
