@@ -2,12 +2,13 @@
 require_once ('../../conexion.php');
 $mysql = new connection();
 $conexion = $mysql->get_connection();
-//consulta
-$sql="CALL insertarEnvaseProducto(?,?)";
+$envase='BOTELLA';
+//Consulata
+//@valor1 esta demas pero es necesario
+$sql='CALL insertarEnvaseProducto(?,@valor1)'; 
 $statement = $conexion->prepare($sql);
 //  i=int s=string d=decimal
-$statement->bind_param("s","GOTERO");
-$statement->bind_param("s","valor1");// ESTE ESTA POR LAS PURAS
+$statement->bind_param('s',$envase);
 $statement->execute();
 $statement->close();
 $conexion->close();
