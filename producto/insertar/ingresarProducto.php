@@ -81,7 +81,7 @@ try {
 
     //BUSCAR PRODUCTO INSERTADO
     //Llamo a la funcion buscarProducto
-    require_once('../consultas/Buscar.php');
+    require_once('../metodos/Buscar.php');
     $buscar = new Bucar();
     $IdProducto = $buscar->buscarProductoNuevo(
         $Nombre,

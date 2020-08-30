@@ -1,5 +1,5 @@
 <?php 
-require_once('../consultas/Buscar.php');
+require_once('../metodos/Buscar.php');
 $buscar = new Bucar();
 
 //DATOS PARA PROBAR
@@ -36,7 +36,7 @@ $IdProducto = $buscar->buscarProductoNuevo(
 echo $IdProducto."<br>";
 echo $fechaHora=$buscar->fechaHoraActual();
 
-
+/*
 
 require_once('../../conexion.php');
 $mysql = new connection();
@@ -50,7 +50,7 @@ $statement->bind_param('diii', $Peso,$Id_tipo,$Id_medidas,$Id_envase);
 $statement->execute();
 $statement->close();
 $conexion->close();
-
+*/
 
 
 ?>
