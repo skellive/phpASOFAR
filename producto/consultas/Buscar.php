@@ -11,6 +11,13 @@ class Bucar
         return $fecha;
     }
 
+    public function fechaHoraActual()
+    {
+        date_default_timezone_set("America/Guayaquil");
+        $fecha = date('Y-m-d H:i:s');
+        return $fecha;
+    }
+
     public function listarMarcasJson()
     {
         $mysql = new connection();

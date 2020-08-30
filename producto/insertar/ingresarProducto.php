@@ -80,17 +80,23 @@ try {
 
 
     //BUSCAR PRODUCTO INSERTADO
-    //Consulta
-    //@valor1 esta demas pero es necesario 
-    $sql = 'CALL BuscarIDProductoNuevo(?,?,?,?,?,?,?,?,?,?,?,?,?,?)';
-    $statement = $conexion->prepare($sql);
-    //  i=int s=string d=decimal
-    $statement->bind_param('ssss', $Codigo_barras,$Nombre,$Descripcion,$fecha);
-    $statement->bind_param('diii', $Peso,$Id_tipo,$Id_medidas,$Id_envase);
-    $statement->bind_param('iisi', $Id_marcas,$Id_usuario,$Iva,$Cantidad_minima);
-    $statement->bind_param('si', $Receta,$Unidades);
-    $statement->execute();
-    $statement->close();
+    //Llamo a la funcion buscarProducto
+    require_once('../consultas/Buscar.php');
+    $buscar = new Bucar();
+    $IdProducto = $buscar->buscarProductoNuevo(
+        $Nombre,
+        $Descripcion,
+        $fecha,
+        $Peso,
+        $Id_tipo,
+        $Id_medidas,
+        $Id_envase,
+        $Id_marcas,
+        $Id_usuario,
+        $Iva,
+        $Cantidad_minima,
+        $Receta,
+        $Unidades );
 
 
 
