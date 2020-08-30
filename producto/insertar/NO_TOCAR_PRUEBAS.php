@@ -1,6 +1,8 @@
 <?php 
 require_once('../consultas/Buscar.php');
 $buscar = new Bucar();
+
+//DATOS PARA PROBAR
 $Codigo_barras = '00005';
 $Nombre = 'ARROZ';
 $Descripcion = 'SACO X 1';
@@ -34,7 +36,7 @@ $IdProducto = $buscar->buscarProductoNuevo(
 echo $IdProducto."<br>";
 echo $fechaHora=$buscar->fechaHoraActual();
 
-/*
+
 
 require_once('../../conexion.php');
 $mysql = new connection();
@@ -49,6 +51,6 @@ $statement->execute();
 $statement->close();
 $conexion->close();
 
-*/
+
 
 ?>
