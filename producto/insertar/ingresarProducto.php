@@ -1,6 +1,6 @@
 <?php
 
-
+// DTAOS PARA PROBAR LA INSERCION
 //PRODUCTO
 $_POST["Codigo_barras"] = "00008";
 $_POST["Nombre"] = "MOBIL";
@@ -65,6 +65,10 @@ try {
         $Cantidad_minima = $_POST["Cantidad_minima"];
         $Receta = $_POST["Receta"];
         $Unidades = $_POST["Unidades"];
+
+        $PrecioCompra=$_POST["PrecioCompra"];
+        $PrecioVenta=$$_POST["PrecioVenta"];
+        $Porcentaje=$_POST["Porcentaje"];
 
 
         //GUARDAMOS EL PRODUCTO
