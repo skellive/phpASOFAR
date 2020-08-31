@@ -1,16 +1,16 @@
 <?php
-
+/*
 // DTAOS PARA PROBAR LA INSERCION
 //PRODUCTO
-$_POST["Codigo_barras"] = "00008";
-$_POST["Nombre"] = "MOBIL";
-$_POST["Descripcion"] = "MOBIL Caja x1";
-$_POST["Peso"] = 5.00;
+$_POST["Codigo_barras"] = "00011";
+$_POST["Nombre"] = "OSITOS";
+$_POST["Descripcion"] = "OSITOS X 3";
+$_POST["Peso"] = 5;
 $_POST["Id_tipo"] = 13;
-$_POST["Id_medidas"] = 7;
-$_POST["Id_envase"] = 8;
+$_POST["Id_medidas"] = 14;
+$_POST["Id_envase"] = 6;
 $_POST["Id_marcas"] = 4;
-$_POST["Id_usuario"] = 43;
+$_POST["Id_usuario"] = 44;
 $_POST["Iva"] = 'NO';
 $_POST["Cantidad_minima"] = 1;
 $_POST["Receta"] = 'SIN RECETA';
@@ -19,7 +19,7 @@ $_POST["Unidades"] = 0;
 $_POST["PrecioCompra"] = 1.10;
 $_POST["PrecioVenta"] = 1.53;
 $_POST["Porcentaje"] = 40;
-
+*/
 
 
 
@@ -67,7 +67,7 @@ try {
         $Unidades = $_POST["Unidades"];
 
         $PrecioCompra=$_POST["PrecioCompra"];
-        $PrecioVenta=$$_POST["PrecioVenta"];
+        $PrecioVenta=$_POST["PrecioVenta"];
         $Porcentaje=$_POST["Porcentaje"];
 
 
