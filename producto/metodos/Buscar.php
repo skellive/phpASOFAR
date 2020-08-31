@@ -38,11 +38,12 @@ class Bucar
             $mysql = new connection();
             $con = $mysql->get_connection();
             $idProducto = 0;
-            $q = "CALL BuscarIDProducto('$Nombre', '$Descripcion', '$fecha', $Peso, $Id_tipo, $Id_medidas, $Id_envase, $Id_marcas, $Id_usuario, '$Iva', $Cantidad_minima, '$Receta', $Unidades);";
-            $consulta = $con->query($q);
+            $q = "CALL BuscarIDProductoNuevo('$Nombre', '$Descripcion', '$fecha', $Peso, $Id_tipo, $Id_medidas, $Id_envase, $Id_marcas, $Id_usuario, '$Iva', $Cantidad_minima, '$Receta', $Unidades,@valor1);";
+            $con->query($q);
+            $consulta = $con->query("select @valor1;");
             mysqli_close($con);
             while ($fila = $consulta->fetch_assoc()) {
-                $idProducto = $fila["valor"];
+                $idProducto = $fila["@valor1"];
             }
             return $idProducto;
         } catch (mysqli_sql_exception $e) {
