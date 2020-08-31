@@ -18,20 +18,6 @@ class Bucar
         return $fecha;
     }
 
-    public function listarMarcasJson()
-    {
-        $mysql = new connection();
-        $con = $mysql->get_connection();
-        $q = "SELECT * FROM moduloprueba.marcas";
-        $res = $con->query($q);
-        mysqli_close($con);
-        $rows = array();
-        while ($r = mysqli_fetch_assoc($res)) {
-            $rows[] = $r;
-        }
-        header('Content-Type: application/json; charset=utf8');
-        echo json_encode($rows, JSON_PRETTY_PRINT, JSON_UNESCAPED_UNICODE);
-    }
 
     public function buscarProductoNuevo(
         $Nombre,
@@ -46,7 +32,8 @@ class Bucar
         $Iva,
         $Cantidad_minima,
         $Receta,
-        $Unidades  ){
+        $Unidades
+    ) {
         try {
             $mysql = new connection();
             $con = $mysql->get_connection();
@@ -58,6 +45,58 @@ class Bucar
                 $idProducto = $fila["valor"];
             }
             return $idProducto;
+        } catch (mysqli_sql_exception $e) {
+            die('Error buscarProductoNuevo: ' . $e->getMessage());
+        }
+    }
+
+    public function insertarPrecioProducto(
+        $IdProducto,
+        $PrecioCompra,
+        $PrecioVenta,
+        $fechaHora,
+        $Id_usuario,
+        $Porcentaje
+    ) {
+        try {
+            $mysql = new connection();
+            $con = $mysql->get_connection();
+            $idProducto = 0;
+            $sql = "call moduloprueba.actualizarPrecioCompra($IdProducto, 0, $PrecioCompra, $PrecioVenta, '$fechaHora', $Id_usuario, $Porcentaje, 0, @valor1);";
+            $consulta = $con->query($sql);
+            mysqli_close($con);
+        } catch (mysqli_sql_exception $e) {
+            die('Error buscarProductoNuevo: ' . $e->getMessage());
+        }
+    }
+
+    public function insertarProducto(
+        $Codigo_barras,
+        $Nombre,
+        $Descripcion,
+        $fecha,
+        $Peso,
+        $Id_tipo,
+        $Id_medidas,
+        $Id_envase,
+        $Id_marcas,
+        $Id_usuario,
+        $Iva,
+        $Cantidad_minima,
+        $Receta,
+        $Unidades
+    ) {
+        try {
+            $mysql = new connection();
+            $con = $mysql->get_connection();
+            //@valor1 esta demas pero es necesario 
+            $sql = 'CALL ingresarProducto(?,?,?,?,?,?,?,?,?,?,?,?,?,?,@valor1)';
+            $statement = $con->prepare($sql);
+            //  i=int s=string d=decimal
+            $statement->bind_param('ssssdiiiiisisi', $Codigo_barras, $Nombre, $Descripcion, $fecha, $Peso, $Id_tipo, $Id_medidas, $Id_envase, $Id_marcas, $Id_usuario, $Iva, $Cantidad_minima, $Receta, $Unidades);
+            $statement->execute();
+            $statement->close();
+            $con->close();
         } catch (mysqli_sql_exception $e) {
             die('Error buscarProductoNuevo: ' . $e->getMessage());
         }

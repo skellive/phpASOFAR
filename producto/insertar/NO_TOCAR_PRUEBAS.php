@@ -17,7 +17,7 @@ $Cantidad_minima = 1;
 $Receta = 'SIN RECETA';
 $Unidades = 0;
 $fecha = '2020-08-28';
-
+/*
 $IdProducto = $buscar->buscarProductoNuevo(
     $Nombre,
     $Descripcion,
@@ -32,25 +32,16 @@ $IdProducto = $buscar->buscarProductoNuevo(
     $Cantidad_minima,
     $Receta,
     $Unidades );
+    */
+$IdProducto=48;
+$fechaHora=$buscar->fechaHoraActual();
+$PrecioCompra=1.10;
+$PrecioVenta=1.53;
+$Porcentaje=40;
 
-echo $IdProducto."<br>";
-echo $fechaHora=$buscar->fechaHoraActual();
 
-/*
+$buscar->insertarPrecioProducto($IdProducto,$PrecioCompra,$PrecioVenta,$fechaHora,$Id_usuario,$Porcentaje);
 
-require_once('../../conexion.php');
-$mysql = new connection();
-$conexion = $mysql->get_connection();
-
-$sql = 'CALL actualizarPrecioCompra(?,?,?,?,?,?,?,?,@valor1)';
-$statement = $conexion->prepare($sql);
-//  i=int s=string d=decimal
-$statement->bind_param('ssss', $Codigo_barras,$Nombre,$Descripcion,$fecha);
-$statement->bind_param('diii', $Peso,$Id_tipo,$Id_medidas,$Id_envase);
-$statement->execute();
-$statement->close();
-$conexion->close();
-*/
 
 
 ?>
