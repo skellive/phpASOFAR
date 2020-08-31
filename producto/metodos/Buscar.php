@@ -63,7 +63,7 @@ class Bucar
             $mysql = new connection();
             $con = $mysql->get_connection();
             $idProducto = 0;
-            $sql = "call moduloprueba.actualizarPrecioCompra($IdProducto, 0, $PrecioCompra, $PrecioVenta, '$fechaHora', $Id_usuario, $Porcentaje, 0, @valor1);";
+            $sql = "call actualizarPrecioCompra($IdProducto, 0, $PrecioCompra, $PrecioVenta, '$fechaHora', $Id_usuario, $Porcentaje, 0, @valor1);";
             $consulta = $con->query($sql);
             mysqli_close($con);
         } catch (mysqli_sql_exception $e) {
