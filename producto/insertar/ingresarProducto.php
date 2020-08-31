@@ -5,7 +5,7 @@
 $_POST["Codigo_barras"] = "00011";
 $_POST["Nombre"] = "OSITOS";
 $_POST["Descripcion"] = "OSITOS X 3";
-$_POST["Peso"] = 5;
+$_POST["Peso"] = 5; //PUEDE SER DECIMAL TAMBIEN
 $_POST["Id_tipo"] = 13;
 $_POST["Id_medidas"] = 14;
 $_POST["Id_envase"] = 6;
