@@ -2,21 +2,8 @@
 require_once('../../conexion.php');
 class Metodos{
 
-    public function fechaActual()
-    {
-        date_default_timezone_set("America/Guayaquil");
-        $fecha = date('Y-m-d');
-        return $fecha;
-    }
 
-    public function fechaHoraActual()
-    {
-        date_default_timezone_set("America/Guayaquil");
-        $fecha = date('Y-m-d H:i:s');
-        return $fecha;
-    }
-
-    public function buscarProductoNuevo(
+    public function insertarCabeceraNotaPedido(
         $id_proveedor,
         $id_usuario,
         $fecha_creacion,
@@ -29,15 +16,15 @@ class Metodos{
         try {
             $mysql = new connection();
             $con = $mysql->get_connection();
-            $idProducto = 0;
-            $q = "call insertarCabeceraNotaPedido($id_proveedor,$id_usuario,'$fecha_creacion',$plazo,$forma_pago,$iva,$descuento,$total,@valor);";
+            $id_cabecera_nota_pedidos = 0;
+            $q = "call insertarCabeceraNotaPedido($id_proveedor,$id_usuario,'$fecha_creacion','$plazo','$forma_pago',$iva,$descuento,$total,@valor);";
             $con->query($q);
             $consulta = $con->query("select @valor;");
             mysqli_close($con);
             while ($fila = $consulta->fetch_assoc()) {
-                $idProducto = $fila["@valor"];
+                $id_cabecera_nota_pedidos = $fila["@valor"];
             }
-            return $idProducto;
+            return $id_cabecera_nota_pedidos;
         } catch (mysqli_sql_exception $e) {
             die('Error buscarProductoNuevo: ' . $e->getMessage());
         }
