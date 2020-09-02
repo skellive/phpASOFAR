@@ -1,5 +1,5 @@
 <?php
-require_once ('../../conexion.php');
+require_once('../../conexion.php');
 
 $mysql = new connection();
 
@@ -19,16 +19,16 @@ try {
 
         $statement = mysqli_query($conexion, $sql);
 
-		while($rows = mysqli_fetch_assoc($statement)){
-			        echo json_encode($rows, JSON_PRETTY_PRINT, JSON_UNESCAPED_UNICODE);
-		}
+        while ($rows = mysqli_fetch_assoc($statement)) {
+            echo json_encode($rows, JSON_PRETTY_PRINT, JSON_UNESCAPED_UNICODE);
+        }
         header('Content-Type: application/json; charset=utf8');
 
         $statement->close();
         $conexion->close();
-        } else {
-            echo('CAMPO VACIO');
-        }
+    } else {
+        echo ('CAMPO VACIO');
+    }
 } catch (Exception $e) {
-    die('Failed: '.$e->getMessage());
+    die('Failed: ' . $e->getMessage());
 }
